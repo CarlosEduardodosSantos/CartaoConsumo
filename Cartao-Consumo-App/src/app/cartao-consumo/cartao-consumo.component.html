@@ -1,0 +1,17 @@
+<table *ngFor = 'let consumo of CartaoConsumo'>
+    <tr>
+        <th>CartaoConsumoId</th>
+        <th>Numero</th>
+        <th>Descricao</th>
+        <th>Valor</th>
+        <th>Validade</th>
+    </tr>
+
+    <tr>
+        <td>{{consumo.CartaoConsumoId}}</td>
+        <td>{{consumo.Numero}}</td>
+        <td>{{consumo.Descricao}}</td>
+        <td>{{consumo.Valor}}</td>
+        <td>{{consumo.Validade}}</td>
+    </tr>
+</table>
