@@ -1,10 +1,10 @@
-
 export var environment = {
-  production: false, apiurl :"http://api.zclub.com.br/", resId: 50
+  production: false,
+  apiurl: 'http://api.zclub.com.br/',
+  resId: 66,
 };
 
-
- /* isAdmin define o tipo de usuário.
+/* isAdmin define o tipo de usuário.
 1 = ADMIN, 
 2 = CLIENTE, 
 3 = CAIXA
