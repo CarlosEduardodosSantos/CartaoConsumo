@@ -7,6 +7,7 @@ import { NumberFormatStyle } from '@angular/common';
 import { Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { iMov } from '../iMov';
+import { iMovXandao } from '../iMovXandao';
 import { UserLoginComponent } from '../user-login/user-login.component';
 import { environment } from '../../environments/environment';
 
@@ -48,7 +49,8 @@ export class UserMovComponent implements OnInit {
   }
 
   consumoModel: iConsumo = new iConsumo();
-  mov: iMov = new iMov();
+  mov: iMovXandao = new iMovXandao();
+  movE: iMov = new iMov();
 
   async obterConsulByNr() {
     await this.CartaoConsumoService.obterConsuByNr(this.Id).then((consum) => {
@@ -164,11 +166,12 @@ export class UserMovComponent implements OnInit {
 
   getTxtInfoMov(_saldo: any, _tipoMov: any) {
     this.mov = {
-      cartaoConsumoId: this.consumo.cartaoConsumoId,
-      saldo: _saldo,
+      numeroCartao: this.consumo.numero,
+      valor: _saldo,
       tipoMov: _tipoMov,
+      restauranteId: environment.resId,
     };
-    if (this.mov.saldo !== '' && this.mov.tipoMov !== '') {
+    if (this.mov.valor !== '' && this.mov.tipoMov !== '') {
       if (this.mov.tipoMov === '1') {
         let soma = parseFloat(this.consumo.saldoAtual) + parseFloat(_saldo);
         this.consumoModel = {
@@ -184,7 +187,7 @@ export class UserMovComponent implements OnInit {
           saldoAtual: _saldo,
         };
         console.log(this.consumoModel);
-        console.log(this.mov.saldo);
+        console.log(this.mov.valor);
         console.log(soma);
         this.CartaoConsumoService.insertMov(this.mov).then(() =>
           location.reload()
@@ -231,17 +234,18 @@ export class UserMovComponent implements OnInit {
   EditMovById(_saldo: any) {
     this.CartaoConsumoService.obterMovById(
       this.CartaoConsumoService.movIdAtual
-    ).then((mov) => {
-      this.movimentacao = mov;
+    ).then((movE) => {
+      this.movimentacao = movE;
     });
-    this.mov = {
+    this.movE = {
       cartaoConsumoId: this.consumo.cartaoConsumoId,
-      cartaoConsumoMovId: this.CartaoConsumoService.movIdAtual,
       saldo: _saldo,
+      cartaoConsumoMovId:
+        this.movimentacao.results[this.index].cartaoConsumoMovId,
       tipoMov: parseInt(this.movimentacao.results[this.index].tipoMov),
     };
     if (_saldo !== '') {
-      this.CartaoConsumoService.updateMov(this.mov).then(() =>
+      this.CartaoConsumoService.updateMov(this.movE).then(() =>
         location.reload()
       );
     } else {

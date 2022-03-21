@@ -5,10 +5,11 @@ footer {
   height: 40px;
   background: grey;
 }
-nav {
+#navzao {
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 2;
 }
 #tabelas {
   position: absolute;

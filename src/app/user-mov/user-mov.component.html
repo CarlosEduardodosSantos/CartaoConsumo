@@ -1,57 +1,59 @@
-<nav
-  class="navbar navbar-light bg-primary"
-  style="border-bottom: 4px solid #0000; background-color: #efeeec !important"
->
-  <div class="container-fluid">
-    <a href="#" class="navbar-brand">
-      <img
-        src="/assets/coxilha.png"
-        width="150"
-        height="100"
-        alt=""
-        class="d-inline-block align-middle mr-2"
-      />
-      <span class="text-uppercase font-weight-bold mx-4">Gift Card</span>
-    </a>
-    <div class="d-flex">
-      <button
-        title="Imprimir"
-        class="btn btn-light mx-2"
-        (click)="printThisPage()"
-      >
-        <i class="fas fa-print"></i>
-      </button>
-      <button
-        title="Editar Registro de Cartão"
-        class="btn btn-light mx-2"
-        *ngIf="isAdmin === '1'"
-        data-bs-toggle="modal"
-        data-bs-target="#editModal"
-      >
-        <i class="fa-solid fa-pen-to-square"></i>
-      </button>
-      <button
-        class="btn btn-light mx-2"
-        *ngIf="isAdmin === '3'"
-        data-bs-toggle="modal"
-        data-bs-target="#editModalC"
-      >
-        <i class="fa-solid fa-pen-to-square"></i>
-      </button>
-      <button
-        title="Voltar"
-        class="btn btn-light mx-2"
-        *ngIf="isAdmin === '1' || isAdmin === '3'"
-        (click)="voltarLogin()"
-      >
-        <i class="fa-solid fa-circle-arrow-left"></i>
-      </button>
-      <button title="Sair" class="btn btn-danger mx-2" (click)="Sair()">
-        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-      </button>
+<div id="navzao">
+  <nav
+    class="navbar navbar-light bg-primary"
+    style="border-bottom: 4px solid #0000; background-color: #efeeec !important"
+  >
+    <div class="container-fluid">
+      <a href="#" class="navbar-brand">
+        <img
+          src="/assets/coxilha.png"
+          width="150"
+          height="100"
+          alt=""
+          class="d-inline-block align-middle mr-2"
+        />
+        <span class="text-uppercase font-weight-bold mx-4">Gift Card</span>
+      </a>
+      <div class="d-flex">
+        <button
+          title="Imprimir"
+          class="btn btn-light mx-2"
+          (click)="printThisPage()"
+        >
+          <i class="fas fa-print"></i>
+        </button>
+        <button
+          title="Editar Registro de Cartão"
+          class="btn btn-light mx-2"
+          *ngIf="isAdmin === '1'"
+          data-bs-toggle="modal"
+          data-bs-target="#editModal"
+        >
+          <i class="fa-solid fa-pen-to-square"></i>
+        </button>
+        <button
+          class="btn btn-light mx-2"
+          *ngIf="isAdmin === '3'"
+          data-bs-toggle="modal"
+          data-bs-target="#editModalC"
+        >
+          <i class="fa-solid fa-pen-to-square"></i>
+        </button>
+        <button
+          title="Voltar"
+          class="btn btn-light mx-2"
+          *ngIf="isAdmin === '1' || isAdmin === '3'"
+          (click)="voltarLogin()"
+        >
+          <i class="fa-solid fa-circle-arrow-left"></i>
+        </button>
+        <button title="Sair" class="btn btn-danger mx-2" (click)="Sair()">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </button>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</div>
 <div id="tabelas">
   <table
     id="tabela1"
@@ -65,46 +67,37 @@
   >
     <thead class="thead-light">
       <tr>
-        <th scope="col">Número do Cartão</th>
-        <th scope="col">Nome</th>
-        <th scope="col">CPF</th>
-        <th scope="col">Descrição</th>
+        <th scope="col">{{ restaurante.nome }}</th>
       </tr>
     </thead>
     <tbody>
       <tr>
+        <td><b>Número:</b></td>
         <td>{{ consumo.numero }}</td>
+      </tr>
+      <tr>
+        <td><b>Nome:</b></td>
         <td>{{ consumo.nome }}</td>
+      </tr>
+      <tr>
+        <td><b>CPF:</b></td>
         <td>{{ consumo.cpf }}</td>
+      </tr>
+      <tr>
+        <td><b>Descricao:</b></td>
         <td>{{ consumo.descricao }}</td>
       </tr>
-    </tbody>
-  </table>
-
-  <table
-    id="tabela1"
-    class="table table-striped"
-    style="
-      margin: 50px;
-      width: 90vw;
-      border: 4px solid black;
-      border-radius: 5px;
-    "
-  >
-    <thead class="thead-light">
       <tr>
-        <th scope="col">Saldo</th>
-        <th scope="col">Validade</th>
-        <th scope="col">Desconto</th>
-        <th scope="col">Empresa</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
+        <td><b>Saldo:</b></td>
         <td>{{ converterCurrency(consumo.saldoAtual) }}</td>
+      </tr>
+      <tr>
+        <td><b>Validade:</b></td>
         <td>{{ consumo.validade }}</td>
+      </tr>
+      <tr>
+        <td><b>Desconto:</b></td>
         <td>{{ consumo.desconto }}%</td>
-        <td>{{ restaurante.nome }}</td>
       </tr>
     </tbody>
   </table>
