@@ -1,3 +1,5 @@
 export const environment = {
-  production: true, apiurl :"http://localhost:56435/", resId: 65
+  production: true,
+  apiurl: 'http://api.zclub.com.br/',
+  resId: 50,
 };

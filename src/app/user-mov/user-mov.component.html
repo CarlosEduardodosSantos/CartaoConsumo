@@ -69,10 +69,6 @@
         <th scope="col">Nome</th>
         <th scope="col">CPF</th>
         <th scope="col">Descrição</th>
-        <th scope="col">Saldo</th>
-        <th scope="col">Validade</th>
-        <th scope="col">Desconto</th>
-        <th scope="col">Empresa</th>
       </tr>
     </thead>
     <tbody>
@@ -81,6 +77,30 @@
         <td>{{ consumo.nome }}</td>
         <td>{{ consumo.cpf }}</td>
         <td>{{ consumo.descricao }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table
+    id="tabela1"
+    class="table table-striped"
+    style="
+      margin: 50px;
+      width: 90vw;
+      border: 4px solid black;
+      border-radius: 5px;
+    "
+  >
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Saldo</th>
+        <th scope="col">Validade</th>
+        <th scope="col">Desconto</th>
+        <th scope="col">Empresa</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
         <td>{{ converterCurrency(consumo.saldoAtual) }}</td>
         <td>{{ consumo.validade }}</td>
         <td>{{ consumo.desconto }}%</td>
