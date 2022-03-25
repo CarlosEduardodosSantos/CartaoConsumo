@@ -9,6 +9,7 @@ import { UserMovComponent } from './user-mov/user-mov.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { AdminConsumoComponent } from './admin-consumo/admin-consumo.component';
 import jsPDF from "jspdf";
+import { CadastroComponent } from './cadastro/cadastro.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import jsPDF from "jspdf";
     AppComponent,
     UserMovComponent,
     UserLoginComponent,
-    AdminConsumoComponent
+    AdminConsumoComponent,
+    CadastroComponent
   ],
   imports: [
     BrowserModule,

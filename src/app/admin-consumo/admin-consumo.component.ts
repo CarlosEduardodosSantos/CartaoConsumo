@@ -112,7 +112,7 @@ export class AdminConsumoComponent implements OnInit {
     return this.restaurante.nome;
   }
 
-  getTxtInfo(
+  async getTxtInfo(
     _numero: any,
     _desc: any,
     _validade: any,
@@ -133,9 +133,20 @@ export class AdminConsumoComponent implements OnInit {
       saldoAtual: 0,
     };
     if (_numero.value !== '' && _desc !== '' && _validade !== '') {
-      this.CartaoConsumoService.insertConsu(this.consumoModel).then(() =>
-        location.reload()
+      let consumo: any;
+      await this.CartaoConsumoService.obterConsuByNr(_numero.value).then(
+        (consum) => {
+          consumo = consum;
+        }
       );
+      if (_numero.value !== consumo.numero) {
+        this.CartaoConsumoService.insertConsu(this.consumoModel).then(() => {
+          location.reload();
+        });
+      } else {
+        window.alert('O cartão ja existe!');
+      }
+
       console.log(this.consumoModel);
     } else {
       window.alert('Por favor insira todas as Informações');

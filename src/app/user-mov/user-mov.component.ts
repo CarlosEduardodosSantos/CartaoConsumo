@@ -126,7 +126,7 @@ export class UserMovComponent implements OnInit {
     window.print();
   }
 
-  EditById(
+  async EditById(
     _guid: any,
     _numeroEdit: any,
     _descEdit: any,
@@ -156,9 +156,19 @@ export class UserMovComponent implements OnInit {
       _valorEdit !== '' &&
       _validadeEdit !== ''
     ) {
-      this.CartaoConsumoService.updateConsu(this.consumoModel).then(() =>
-        location.reload()
+      let consumo: any;
+      await this.CartaoConsumoService.obterConsuByNr(_numeroEdit).then(
+        (consum) => {
+          consumo = consum;
+        }
       );
+      if (_numeroEdit !== consumo.numero) {
+        this.CartaoConsumoService.updateConsu(this.consumoModel).then(() =>
+          location.reload()
+        );
+      } else {
+        window.alert('O cartão ja existe!');
+      }
     } else {
       window.alert('Por favor insira todas as Informações!');
     }
